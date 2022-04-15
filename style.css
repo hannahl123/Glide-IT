@@ -2,46 +2,47 @@ body {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     height: 100%;
+    max-width: 100%;
     padding: 20px 10vw;
     margin: auto;
     background-image: linear-gradient(#FDFCDC, #FDD5AF);
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-canvas {
+  }
+  
+  canvas {
     max-height: 80vh;
     max-width: 95vw;
     margin: auto;
-    background-color: rgb(254, 250, 235);
+    background-color: rgb(254, 251, 238);
     border: 20px ridge #0081A7;
-}
-
-h1 {
+  }
+  
+  h1 {
     font-size: 60px;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-size: 30px;
-}
-
-h3 {
+  }
+  
+  h3 {
     font-size: 25px;
-}
-
-h5 {
+  }
+  
+  h5 {
     font-size: 16px;
-}
-
-.bar {
+  }
+  
+  .bar {
     height: 10px;
     width: 100px;
     margin: auto;
     padding: 0px;
     background-color: #000;
-}
-
-button {
+  }
+  
+  button {
     width: 150px;
     height: 40px;
     font-size: 20px;
@@ -49,49 +50,63 @@ button {
     border-right: 5px outset rgb(5, 163, 211);
     border-bottom: 5px outset rgb(5, 163, 211);
     color: #ffffff;
-}
-
-.instruc {
+  }
+  
+  .instruc {
     margin-bottom: 10px;
     font-size: 16px;
     background-color: transparent;
     border: 3px outset rgb(5, 163, 211);
     color: #0081A7;
-}
-
-a {
+  }
+  
+  .mode {
+    margin: 10px;
+    font-size: 16px;
+    background-color: rgb(254, 250, 235, 0.5);
+    border: 1px outset rgb(5, 163, 211);
+    border-right: 3px outset rgb(5, 163, 211);
+    border-bottom: 3px outset rgb(5, 163, 211);
+    color: #0081A7;
+  }
+  
+  .back {
+    margin-top: 30px;
+  }
+  
+  a {
     text-decoration: none;
-}
-
-table {
+  }
+  
+  table {
     text-align: left;
     padding: 20px;
     margin: auto;
     border-spacing: 30px;
-}
-
-tr {
+  }
+  
+  tr {
     background-color: rgb(255, 241, 220);
-}
-
-th, td {
+  }
+  
+  th, td {
     padding: 20px;
     border: 1px inset rgba(253, 213, 175, 0.3);
     border-right: 2px outset rgba(253, 213, 175, 0.6);
     border-bottom: 2px outset rgba(253, 213, 175, 0.6);
-}
-
-th {
+  }
+  
+  th {
     font-size: 20px;
     border: 2px inset rgba(253, 213, 175, 0.6);
     border-right: 4px outset #FDD5AF;
     border-bottom: 4px outset #FDD5AF;
-}
-
-td {
+  }
+  
+  td {
     font-size: 18px;
-}
-
-footer {
+  }
+  
+  footer {
     padding: 0px 10vw;
-}
+  }
