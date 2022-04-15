@@ -9,7 +9,7 @@ display = document.getElementById('outputDiv');
 // Start the game by pressing the start button on the home page
 function startGame() {
     document.getElementById("outputDiv").innerHTML = "";
-    myGamePiece = new component(60, 60, "#00AFB9", 50, 200);
+    myGamePiece = new component(55, 55, "#00AFB9", 50, 200);
     myScore = new component("40px", "Consolas", "black", 500, 70, "text");
     myGameScore = new component("50px", "Consolas", "red", 500, 320, "text")
     myGameEnd = new component("70px", "Courier New", "black", 500, 260, "text")
@@ -83,61 +83,64 @@ function component(width, height, color, x, y, type) {
 }
 
 function updateGameArea() {
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
-
-    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-    for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i])) {
-            myGameArea.clear();
-            myGameEnd.text = "GAME ENDED"; myGameScore.text = "Your score is " + myGameArea.frameNo;
-            myGameEnd.update();
-            myGameScore.update();
-            return;
-        } else {
-            if (myGameArea.keys && myGameArea.keys[37]) {
-                myGamePiece.speedX = -2;
-            }
-            if (myGameArea.keys && myGameArea.keys[39]) {
-                myGamePiece.speedX = 2;
-            }
-            if (myGameArea.keys && myGameArea.keys[38]) {
-                myGamePiece.speedY = -2;
-            }
-            if (myGameArea.keys && myGameArea.keys[40]) {
-                myGamePiece.speedY = 2;
+    if (myGameArea.keys && myGameArea.keys[82]) {
+        myGameArea.stop();
+        myGameArea.clear();
+        startGame();
+        return;
+    } else {
+        myGamePiece.speedX = 0;
+        myGamePiece.speedY = 0;
+        var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+        for (i = 0; i < myObstacles.length; i += 1) {
+            if (myGamePiece.crashWith(myObstacles[i])) {
+                myGameArea.clear();
+                myGameEnd.text = "GAME ENDED";
+                myGameScore.text = "Your score is " + myGameArea.frameNo;
+                myGameEnd.update();
+                myGameScore.update();
+                return;
+            } else {
+                if (myGameArea.keys && myGameArea.keys[37]) {
+                    myGamePiece.speedX = -2;
+                }
+                if (myGameArea.keys && myGameArea.keys[39]) {
+                    myGamePiece.speedX = 2;
+                }
+                if (myGameArea.keys && myGameArea.keys[38]) {
+                    myGamePiece.speedY = -2;
+                }
+                if (myGameArea.keys && myGameArea.keys[40]) {
+                    myGamePiece.speedY = 2;
+                }
+                // Hold spacebar to pause
+                if (myGameArea.keys && myGameArea.keys[32]) {
+                    return;
+                }
             }
         }
-        // Hold spacebar to pause
-        if (myGameArea.keys && myGameArea.keys[32]) {
-            return;
+        myGameArea.clear();
+        myGameArea.frameNo += 1;
+        if (myGameArea.frameNo == 1 || everyinterval(80)) {
+            x = myGameArea.canvas.width;
+            minHeight = 50;
+            maxHeight = 300;
+            height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
+            minGap = 70;
+            maxGap = 150;
+            gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
+            myObstacles.push(new component(35, height, "#0081A7", x, 0));
+            myObstacles.push(new component(35, x - height - gap, "#0081A7", x, height + gap));
         }
-        //if (myGameArea.keys && myGameArea.keys[82]) {
-        //myGameArea.stop();
-        //myGameArea.clear();
-        //}
+        for (i = 0; i < myObstacles.length; i += 1) {
+            myObstacles[i].x += -3;
+            myObstacles[i].update();
+        }
+        myScore.text = "SCORE: " + myGameArea.frameNo;
+        myScore.update();
+        myGamePiece.newPos();
+        myGamePiece.update();
     }
-    myGameArea.clear();
-    myGameArea.frameNo += 1;
-    if (myGameArea.frameNo == 1 || everyinterval(80)) {
-        x = myGameArea.canvas.width;
-        minHeight = 50;
-        maxHeight = 200;
-        height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
-        minGap = 75;
-        maxGap = 100;
-        gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
-        myObstacles.push(new component(35, height, "#0081A7", x, 0));
-        myObstacles.push(new component(35, x - height - gap, "#0081A7", x, height + gap));
-    }
-    for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -3;
-        myObstacles[i].update();
-    }
-    myScore.text = "SCORE: " + myGameArea.frameNo;
-    myScore.update();
-    myGamePiece.newPos();
-    myGamePiece.update();
 }
 
 function everyinterval(n) {
@@ -149,3 +152,4 @@ function clearmove() {
     myGamePiece.speedX = 0;
     myGamePiece.speedY = 0;
 }
+
